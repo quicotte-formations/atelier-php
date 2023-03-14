@@ -1,4 +1,5 @@
 <?php
+#Petite modif
 $personnes = [];
 do{
     # Affiche menu et demande choix
