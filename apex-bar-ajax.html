@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
+</head>
+<body>
+<h1 id="titre"></h1>
+<div id="chart"></div>
+<script>
+
+    let chargeCours = async (symbol)=>{
+        // Charge cours
+        resp = await fetch( `https://api.binance.com/api/v3/klines?symbol=${symbol}&interval=1h&limit=20` )
+        data = await resp.json()
+
+        // Transforme pour les séries
+        data = data.map( ligne => {
+            let date = new Date(ligne[0]).toLocaleString()
+
+            return { x: date, y: ligne[1] }
+        } )
+
+        // Crée chart
+        var options = {
+            chart: {
+                type: 'bar'
+            },
+            series: [{
+                data: data
+            }],
+
+        }
+
+        chart = new ApexCharts(document.querySelector("#chart"), options)
+
+        chart.render()
+
+        // Change titre
+        document.querySelector('#titre').innerHTML = `Historique des cours du ${symbol}`
+    }
+
+    chargeCours('MATICEUR')
+
+
+</script>
+</body>
+</html>
