@@ -23,7 +23,7 @@ $personnes = array_map( function($elemAct){
 }, $personnes );
 
 # Tri par nom puis prénom
-usort( $personnes, function($personne1, $personne2){
+uasort( $personnes, function($personne1, $personne2){
 
     $comparateur = strcmp($personne1['nom'], $personne2['nom']);
 
@@ -41,4 +41,10 @@ $personnes = array_filter( $personnes, function($personneAct){
     return $personneAct['nom']==='Cohen';
 } );
 
+$cohen = 'Cohen';
+$personnes = array_filter( $personnes, function($personneAct) use ($cohen){
+    return $personneAct['nom']===$cohen;
+} );
+
 echo json_encode($personnes, JSON_PRETTY_PRINT);
+
