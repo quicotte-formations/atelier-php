@@ -7,7 +7,7 @@
  * array_map        conversion de format
  */
 
-$personnes = ['Roman Polanski', 'Quentin Tarantino', 'Joel Cohen', 'Ethan Cohen'];
+$personnes = ['Brad Pitt', 'Quentin Tarantino', 'Joel Cohen', 'Ethan Cohen'];
 
 # Transformation
 $personnes = array_map( function($elemAct){
@@ -38,7 +38,7 @@ usort( $personnes, function($personne1, $personne2){
 
 # Filtrage : uniquement les noms Cohen
 $personnes = array_filter( $personnes, function($personneAct){
-    return str_contains($personneAct['nom'], 'Cohen');
+    return $personneAct['nom']==='Cohen';
 } );
 
 echo json_encode($personnes, JSON_PRETTY_PRINT);
