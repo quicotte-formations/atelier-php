@@ -15,11 +15,12 @@
 
     let chargeCours = async (symbol)=>{
         // Charge cours
-        resp = await fetch( `https://api.binance.com/api/v3/klines?symbol=${symbol}&interval=1h&limit=20` )
+        resp = await fetch( `https://api.binance.com/api/v3/klines?symbol=${symbol}&interval=1d&limit=20` )
         data = await resp.json()
 
         // Transforme pour les séries
         data = data.map( ligne => {
+            console.log(ligne)
             let date = new Date(ligne[0]).toLocaleString()
 
             return { x: date, y: ligne[1] }
@@ -44,7 +45,7 @@
         document.querySelector('#titre').innerHTML = `Historique des cours du ${symbol}`
     }
 
-    chargeCours('MATICEUR')
+    chargeCours('BTCEUR')
 
 
 </script>
