@@ -20,7 +20,7 @@ $genres = $stm->fetchAll();
     <?php
         foreach ($genres as $genre){
     ?>
-    <a href="web-db-lister-films-par-genre.php?idDuGenre=<?php echo $genre['id'] ?>"><?php echo $genre['nom']; ?></a>
+    <a href="web-db-lister-films-par-genre.php?nomGenre=<?php echo $genre['nom']; ?>&idDuGenre=<?php echo $genre['id'] ?>"><?php echo $genre['nom']; ?></a>
     <?php
         }
     ?>

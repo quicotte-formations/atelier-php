@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+  <h1>Films du genre {{ nomDuGenre }} : {{ mesFilms | length }}</h1>
+  {% if mesFilms | length < 10 %}
+    Pas de films trouvés
+  {% else %}
+      {% for filmActuel in mesFilms %}
+      <div>
+        <h4>Titre : {{ filmActuel['titre'] }} ( année : {{ filmActuel['annee'] }}) </h4>
+      </div>
+      {% endfor %}
+  {% endif %}
+</body>
+</html>
